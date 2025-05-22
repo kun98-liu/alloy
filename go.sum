@@ -1367,8 +1367,8 @@ github.com/gosnmp/gosnmp v1.39.0/go.mod h1:CxVS6bXqmWZlafUj9pZUnQX5e4fAltqPcijxW
 github.com/gotestyourself/gotestyourself v2.2.0+incompatible/go.mod h1:zZKM6oeNM8k+FRljX1mnzVYeS8wiGgQyvST1/GafPbY=
 github.com/grafana/alloy-remote-config v0.0.10 h1:1Ge7lz2mjXI1rd6SmiZpFHyXeLehBuCi43+XTkdqgV4=
 github.com/grafana/alloy-remote-config v0.0.10/go.mod h1:kHE1usYo2WAVCikQkIXuoG1Clz8BSdiz3kF+DZSCQ4k=
-github.com/grafana/beyla/v2 v2.2.3-alloy.2 h1:DX/UetYes/7kPirddGBCfjY3NuXXDG/+AGBq+ejOHKs=
-github.com/grafana/beyla/v2 v2.2.3-alloy.2/go.mod h1:paDYfhkRs9Au+wENl4Eve5ddjld9Mrhp+Jw2BrZrWvA=
+github.com/grafana/beyla/v2 v2.3.0-alloy-pre h1:fUAmoXHRwnGrOEkzR/+IpycGDeJOAk2naGzss9mN75Q=
+github.com/grafana/beyla/v2 v2.3.0-alloy-pre/go.mod h1:HohtIWRuNZQEdKQowb3ErixOyTXw7dGZE7DFOjCQQZc=
 github.com/grafana/cadvisor v0.0.0-20240729082359-1f04a91701e2 h1:ju6EcY2aEobeBg185ETtFCKj5WzaQ48qfkbsSRRQrF4=
 github.com/grafana/cadvisor v0.0.0-20240729082359-1f04a91701e2/go.mod h1:8sLW/G7rcFe1CKMaA4pYT4mX3P1xQVGqM6luzEzx/2g=
 github.com/grafana/catchpoint-prometheus-exporter v0.0.0-20250218151502-6e97feaee761 h1:dPJOIEwtQ8uR3Qa79pb/lsSFJQ6j4P9vpCUQ4fKimG4=
@@ -2182,8 +2182,6 @@ github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexpo
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.125.0/go.mod h1:wTaLPMjQbV5u1Kt2FWLeXsPN/a392cK7nPdm0J/MXFs=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/syslogexporter v0.125.0 h1:RMb3vp17vmHYQxPmDEIpdOpzJJoF/BA6a2/rD07X4JY=
 github.com/open-telemetry/opentelemetry-collector-contrib/exporter/syslogexporter v0.125.0/go.mod h1:oo9JDp+KgzUlMbH70BGW9Kkr+z2YnjkxuYde+L+QVRQ=
-github.com/open-telemetry/opentelemetry-collector-contrib/extension/ackextension v0.125.0 h1:Jk1vtJyY4BhmokaZ2CeqFYO0j7y2rFJR0o0SsrbA4MM=
-github.com/open-telemetry/opentelemetry-collector-contrib/extension/ackextension v0.125.0/go.mod h1:vLhManAJ7a78nPUvesS1h4UdwV5hcpqbjnQrVb7xqHM=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.125.0 h1:Xpaq2IB0KK+pmV13awUu/PUnw8UQyvoaK2GP398YkiA=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/basicauthextension v0.125.0/go.mod h1:30BR6spQWNko2i75RvSpscxNDCyYzaqfUMGCavg3hvM=
 github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.125.0 h1:UajQkwbJrarkXz1rv5a1aVhmxbcbAVInPohYtdWmURQ=
@@ -2310,8 +2308,6 @@ github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusrec
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.125.0/go.mod h1:t5uDdQwwAoZGzRsy4CobyM1o9NtOdswm08p+5be2/is=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/solacereceiver v0.125.0 h1:HWeuhP9E378MuIDsQQFS4P5ulN9445Vgku2uZdYTnFk=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/solacereceiver v0.125.0/go.mod h1:eIY8ofFacTQ+50AYpRQ6yXx+p1cjInh+2w1PrMSkh9I=
-github.com/open-telemetry/opentelemetry-collector-contrib/receiver/splunkhecreceiver v0.125.0 h1:lhnMSEwanRMH1tRhrCCAcwNWZNYKJNqzhAOsYHclNSg=
-github.com/open-telemetry/opentelemetry-collector-contrib/receiver/splunkhecreceiver v0.125.0/go.mod h1:99hApHAnPly+hL1FuRBtrNtftVjvoUR7M6VsnLrPuuk=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/syslogreceiver v0.125.0 h1:8rfwjER79cAgdUFgDpC+YI4Otj1kZj3lLwunkpcVnog=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/syslogreceiver v0.125.0/go.mod h1:ITy0TYrT8jnygmHq+tYUsEIGX5wXpl/+dVx+rioT3dM=
 github.com/open-telemetry/opentelemetry-collector-contrib/receiver/tcplogreceiver v0.125.0 h1:CBTCJAxeFaygKAY6ioAESJau4iYR3S5h+ZAeA/OMdDs=
