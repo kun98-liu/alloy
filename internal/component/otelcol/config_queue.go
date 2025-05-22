@@ -61,7 +61,7 @@ func (args *QueueArguments) Convert() (*otelexporterhelper.QueueConfig, error) {
 	q := &otelexporterhelper.QueueConfig{
 		Enabled:      args.Enabled,
 		NumConsumers: args.NumConsumers,
-		QueueSize:    args.QueueSize,
+		QueueSize:    int64(args.QueueSize),
 		Blocking:     args.Blocking,
 	}
 

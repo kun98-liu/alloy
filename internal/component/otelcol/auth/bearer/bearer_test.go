@@ -87,7 +87,7 @@ func TestClient(t *testing.T) {
 		clientExtension, err := exports.Handler.GetExtension(auth.Client)
 		require.NoError(t, err)
 
-		clientAuth, ok := clientExtension.Extension.(extauth.Client)
+		clientAuth, ok := clientExtension.Extension.(extauth.HTTPClient)
 		require.True(t, ok, "handler does not implement configauth.ClientAuthenticator")
 
 		rt, err := clientAuth.RoundTripper(http.DefaultTransport)
