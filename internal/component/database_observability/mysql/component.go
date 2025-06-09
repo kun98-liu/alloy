@@ -53,6 +53,8 @@ type Arguments struct {
 	DataSourceName                alloytypes.Secret   `alloy:"data_source_name,attr"`
 	CollectInterval               time.Duration       `alloy:"collect_interval,attr,optional"`
 	SetupConsumersCollectInterval time.Duration       `alloy:"setup_consumers_collect_interval,attr,optional"`
+	LocksCollectInterval          time.Duration       `alloy:"locks_collect_interval,attr,optional"`
+	LocksThreshold                time.Duration       `alloy:"locks_threshold,attr,optional"`
 	ForwardTo                     []loki.LogsReceiver `alloy:"forward_to,attr"`
 	EnableCollectors              []string            `alloy:"enable_collectors,attr,optional"`
 	DisableCollectors             []string            `alloy:"disable_collectors,attr,optional"`
@@ -63,6 +65,8 @@ type Arguments struct {
 var DefaultArguments = Arguments{
 	CollectInterval:               1 * time.Minute,
 	SetupConsumersCollectInterval: 1 * time.Hour,
+	LocksCollectInterval:          10 * time.Second,
+	LocksThreshold:                0,
 }
 
 func (a *Arguments) SetToDefault() {
@@ -329,6 +333,24 @@ func (c *Component) startCollectors() error {
 		}
 		c.collectors = append(c.collectors, scCollector)
 	}
+
+	locksCollector, err := collector.NewLock(collector.LockArguments{
+		DB:                dbConnection,
+		InstanceKey:       c.instanceKey,
+		CollectInterval:   c.args.LocksCollectInterval,
+		LockWaitThreshold: c.args.LocksThreshold,
+		Logger:            c.opts.Logger,
+		EntryHandler:      entryHandler,
+	})
+	if err != nil {
+		level.Error(c.opts.Logger).Log("msg", "failed to create locks collector", "err", err)
+		return err
+	}
+	if err := locksCollector.Start(context.Background()); err != nil {
+		level.Error(c.opts.Logger).Log("msg", "failed to start locks collector", "err", err)
+		return err
+	}
+	c.collectors = append(c.collectors, locksCollector)
 
 	// Connection Info collector is always enabled
 	ciCollector, err := collector.NewConnectionInfo(collector.ConnectionInfoArguments{
