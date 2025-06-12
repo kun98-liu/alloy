@@ -66,7 +66,7 @@ var DefaultArguments = Arguments{
 	CollectInterval:               1 * time.Minute,
 	SetupConsumersCollectInterval: 1 * time.Hour,
 	LocksCollectInterval:          10 * time.Second,
-	LocksThreshold:                0,
+	LocksThreshold:                100 * time.Millisecond,
 }
 
 func (a *Arguments) SetToDefault() {
@@ -219,6 +219,7 @@ func enableOrDisableCollectors(a Arguments) map[string]bool {
 		collector.SchemaTableName:    true,
 		collector.SetupConsumersName: true,
 		collector.QuerySampleName:    false,
+		collector.LocksName:          false,
 	}
 
 	for _, disabled := range a.DisableCollectors {
@@ -334,23 +335,25 @@ func (c *Component) startCollectors() error {
 		c.collectors = append(c.collectors, scCollector)
 	}
 
-	locksCollector, err := collector.NewLock(collector.LockArguments{
-		DB:                dbConnection,
-		InstanceKey:       c.instanceKey,
-		CollectInterval:   c.args.LocksCollectInterval,
-		LockWaitThreshold: c.args.LocksThreshold,
-		Logger:            c.opts.Logger,
-		EntryHandler:      entryHandler,
-	})
-	if err != nil {
-		level.Error(c.opts.Logger).Log("msg", "failed to create locks collector", "err", err)
-		return err
+	if collectors[collector.LocksName] {
+		locksCollector, err := collector.NewLock(collector.LockArguments{
+			DB:                dbConnection,
+			InstanceKey:       c.instanceKey,
+			CollectInterval:   c.args.LocksCollectInterval,
+			LockWaitThreshold: c.args.LocksThreshold,
+			Logger:            c.opts.Logger,
+			EntryHandler:      entryHandler,
+		})
+		if err != nil {
+			level.Error(c.opts.Logger).Log("msg", "failed to create locks collector", "err", err)
+			return err
+		}
+		if err := locksCollector.Start(context.Background()); err != nil {
+			level.Error(c.opts.Logger).Log("msg", "failed to start locks collector", "err", err)
+			return err
+		}
+		c.collectors = append(c.collectors, locksCollector)
 	}
-	if err := locksCollector.Start(context.Background()); err != nil {
-		level.Error(c.opts.Logger).Log("msg", "failed to start locks collector", "err", err)
-		return err
-	}
-	c.collectors = append(c.collectors, locksCollector)
 
 	// Connection Info collector is always enabled
 	ciCollector, err := collector.NewConnectionInfo(collector.ConnectionInfoArguments{
