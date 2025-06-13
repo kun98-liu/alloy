@@ -65,8 +65,8 @@ type Arguments struct {
 var DefaultArguments = Arguments{
 	CollectInterval:               1 * time.Minute,
 	SetupConsumersCollectInterval: 1 * time.Hour,
-	LocksCollectInterval:          10 * time.Second,
-	LocksThreshold:                100 * time.Millisecond,
+	LocksCollectInterval:          1 * time.Second,
+	LocksThreshold:                500 * time.Millisecond,
 }
 
 func (a *Arguments) SetToDefault() {
